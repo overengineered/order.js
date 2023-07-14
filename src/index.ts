@@ -25,8 +25,8 @@ export function prepareMatcher(options: Options): CalculateRelevance {
       return 99 + (0.99 * query.length) / content.length;
     }
 
-    const queryTokens = tokenizer(query);
-    const contentTokens = tokenizer(content);
+    const queryTokens = tokenizer(query).filter(Boolean);
+    const contentTokens = tokenizer(content).filter(Boolean);
     let score = 0;
     for (let i = 0, len = queryTokens.length; i < len; i += 1) {
       for (let j = 0, total = contentTokens.length; j < total; j += 1) {

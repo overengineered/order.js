@@ -52,3 +52,10 @@ test('Partial matches', function () {
   const search = searchUsing(prepareMatcher('natural'), String);
   expect(search('burger', data)).toEqual(['cheeseburger']);
 });
+
+describe('edge cases', () => {
+  it('space at the end does not match all', () => {
+    const search = searchUsing(prepareMatcher('natural'), String);
+    expect(search('c ', ['ab', 'bc', 'cd', 'de'])).toEqual(['cd', 'bc']);
+  });
+});
